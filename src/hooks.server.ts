@@ -10,6 +10,7 @@ const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
 		event.request = request;
 		return resolve(event, {
+			preload: ({ type }) => type === 'css' || type === 'font' || type === 'js',
 			transformPageChunk: ({ html }) =>
 				html
 					.replace('%paraglide.lang%', locale)
